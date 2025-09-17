@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract ChainFlowBridge {
+    event TokenLocked(address indexed user, uint256 amount, string targetChain, address targetAddress);
+
+    function lockTokens(string calldata targetChain, address targetAddress) external payable {
+        require(msg.value > 0, "Must lock some ETH");
+        emit TokenLocked(msg.sender, msg.value, targetChain, targetAddress);
+    }
+}
